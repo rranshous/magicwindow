@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-POST_TARGET=http://lilnit:5040
+#POST_TARGET=http://lilnit:5041
 
 image_name=`hostname`.jpeg
 out_path=/tmp/$image_name

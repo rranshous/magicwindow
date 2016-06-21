@@ -1,0 +1,10 @@
+FROM ruby:2.3.1
+
+RUN apt-get update
+RUN apt-get install -y streamer
+
+ADD ./ /src
+WORKDIR /src
+ENTRYPOINT ["./run_node"]
+
+ENV SLEEP_TIME 10

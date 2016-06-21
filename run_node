@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+export POST_TARGET=$1
+
+echo "starting"
+echo "sleep time: $SLEEP_TIME"
+
+while true
+do
+  echo "running node"
+  ./node
+  echo "done running node"
+  echo "sleeping $SLEEP_TIME seconds"
+  sleep $SLEEP_TIME
+done
