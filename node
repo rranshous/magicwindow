@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+POST_TARGET=http://lilnit:5040
+
+image_name=`hostname`.jpeg
+out_path=/tmp/$image_name
+echo "taking picture: $out_path"
+streamer -o "$out_path"
+echo "sending picture: $out_path => $POST_TARGET"
+curl -XPOST --data-binary "@$out_path" $POST_TARGET/$image_name
+echo "cleaning up: $out_path"
+rm "$out_path"
