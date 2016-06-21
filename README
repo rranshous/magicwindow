@@ -1,4 +1,9 @@
+w/in manheim to run new node:
+ - install `streamer` package on host
+ - `SLEEP_TIME=10 ./run_node http://lilnit:5040` on host
+ - visit http://lilnit:5043/ to see all the images on a single page
+
+
 Simple:
   run rranshous/file_receiver - will receive the images from each node
-  run rranshous/http_listing - export file receiver container's /data to this container's /data
-  use node script on each node in a loop w/ some sleep
+  run_node on each node you want to take pics from
