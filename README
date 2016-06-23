@@ -1,9 +1,21 @@
-w/in manheim to run new node:
- - install `streamer` package on host
- - `SLEEP_TIME=10 ./run_node http://lilnit:5040` on host
- - visit http://lilnit:5043/ to see all the images on a single page
+screen which aggregates images from nodes
 
+pieces
+ - file receiver: takes POST requests of jpeg images
+ - serve images: takes GET requests to root and serves up a page w/ all the images
+ - cleaner: deletes files which are older than a minute, only want to show recent images
 
-Simple:
-  run rranshous/file_receiver - will receive the images from each node
-  run_node on each node you want to take pics from
+following instructions set up server and node on same host
+
+setup node
+ - install `streamer` package (`apt-get install streamer`)
+ - start the node script `./run_node http://localhost:5040`
+ - visit http://localhost:5043/ to see all the images collected from the nodes
+
+setup server
+ - start the container which will receive the images
+   `docker run -d -p 5040:80 --restart=always --name=magicwindow-file-receiver rranshous/file_receiver`
+ - start container which will serve up collected images
+   `docker run -d -p 5043:80 --volumes-from=magicwindow-file-receiver --restart=always --name=magicwindow-serve-images  rranshous/magicwindow-serve-images`
+ - start the cleaner container, it clears out old images
+   `docker run -d --volumes-from=magicwindow-file-receiver --restart=always --name=magicwindow-cleaner rranshous/magicwindow-cleaner`
