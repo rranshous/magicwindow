@@ -19,6 +19,7 @@ deployment:
   hub:
     branch: master
     commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
       - docker push rranshous/magicwindow-cleaner
       - docker push rranshous/magicwindow-run-node
       - docker push rranshous/magicwindow-serve-images
