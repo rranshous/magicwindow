@@ -1,0 +1,24 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t rranshous/magicwindow-cleaner -f Dockerfile-cleaner .
+    - docker build -t rranshous/magicwindow-run-node -f Dockerfile-run-node .
+    - docker build -t rranshous/magicwindow-serve-images -f Dockerfile-serve-images .
+
+test:
+  override:
+    - docker run -d rranshous/magicwindow-cleaner
+    - docker run -d rranshous/magicwindow-run-node
+    - docker run -d rranshous/magicwindow-serve-images
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker push rranshous/magicwindow-cleaner
+      - docker push rranshous/magicwindow-run-node
+      - docker push rranshous/magicwindow-serve-images
