@@ -1,0 +1,7 @@
+FROM ubuntu:14.04
+
+ADD ./ /src
+WORKDIR /src
+
+VOLUME /data
+ENTRYPOINT ["./clean.sh"]
