@@ -9,6 +9,7 @@ following instructions set up server and node on same host
 
 setup node
  - install `streamer` package (`apt-get install streamer`)
+   - Or `brew install imagesnap` on a mac
  - start the node script `./run_node http://localhost:5040`
  - visit http://localhost:5043/ to see all the images collected from the nodes
 
