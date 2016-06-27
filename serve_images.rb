@@ -16,7 +16,7 @@ get '/' do
   Dir["#{DATA_DIR}/*.jpeg"].each do |path|
     puts "reading in file: #{path}"
     to_embed = create_data_uri(path, 'image/jpeg')
-    to_return += "<img style='float: left;' src='#{to_embed}'/>"
+    to_return += "<img style='float: left; max-height: 400px; max-width: 400px;' src='#{to_embed}'/>"
   end
   to_return
 end
